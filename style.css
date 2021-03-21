@@ -1,15 +1,85 @@
-*{
-    border: 1px solid red ;
+* {
+    border: 1px solid red;
 }
-h1{
+
+h1 {
     display: flex;
     justify-content: center;
 }
-.table{
+
+.table {
     display: flex;
     justify-content: center;
 }
-body{
+
+body {
     height: 100vh;
     margin: 0;
+    font-family:"Roboto";
+    
+}
+
+.rows-container {
+    height: 100vh;
+}
+
+.row-screen {
+    height: 16.6%;
+    background-color: black;
+    color: white;
+}
+
+.row-fifth {
+    height: 16.6%;
+    display: flex;
+}
+
+.row-fourth {
+    height: 16.6%;
+    display: flex;
+}
+
+.row-third {
+    height: 16.6%;
+    display: flex;
+}
+
+.row-second {
+    height: 16.6%;
+    display: flex;
+}
+
+.row-first {
+    height: 16.6%;
+    display: flex;
+}
+
+.button {
+    flex-grow: 2;
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.big-button {
+    flex-grow: 4;
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+.big-button:hover {
+    background-color: greenyellow;
+    color:black;
+}
+
+.big-button-orange {
+    flex-grow: 4;
+    font-size: 70px;
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
