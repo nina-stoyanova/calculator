@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function (eventInfo) {
         let element = allButtons[i];//div
         element.addEventListener("click", function (event) {
             let clickedElement = event.target.innerText; // "5","6"","-","="..
-            
+
             if (isNaN(clickedElement)) {//we have string
                 switch (clickedElement) {
                     case "+":
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function (eventInfo) {
                         dot = ".";
                         arrayNumbers.push(dot);
                         firstNumber = Number(arrayNumbers.join(""));//create the first number
-                        blackScreen.innerText = firstNumber;             
+                        blackScreen.innerText = firstNumber;
                         break;
                     case "AC":
                         arrayNumbers = [];
@@ -75,9 +75,9 @@ document.addEventListener("DOMContentLoaded", function (eventInfo) {
                         } else if (operator === "/") {
                             result = firstNumber / secondNumber;
                             operator = "";
-                            blackScreen.innerText = (`${firstNumber} / ${secondNumber} = ${result}`); 
-                        } 
-                        break;      
+                            blackScreen.innerText = (`${firstNumber} / ${secondNumber} = ${result}`);
+                        }
+                        break;
                 }
             } else {                         //we have number
                 let number = Number(clickedElement);
@@ -94,3 +94,5 @@ document.addEventListener("DOMContentLoaded", function (eventInfo) {
     }
 
 });
+
+ 
