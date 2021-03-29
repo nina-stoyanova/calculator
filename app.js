@@ -3,29 +3,20 @@ document.addEventListener("DOMContentLoaded", function (eventInfo) {
     class HtmlManager {
         constructor() {
             this.blackScreen = document.querySelector(".zero");//property of the class
+
         }
         getAllButtons() {
             return document.querySelectorAll(".clickable");// ["5","6"","-","="]..
         }
-        initialSetUp() {
+        initialSetUp(calculatorObject) {
             for (let i = 0; i < this.getAllButtons().length; i++) {
                 let element = this.getAllButtons()[i];//div
-                element.addEventListener("click", function (event) {
+                element.addEventListener("click", (event) => { //instead of function (event), lock this 
                     let clickedElement = event.target.innerText; // send to Calculator object
-                    let forDisplay = receiveMessage(clickedElement); //get the return string from Calculator
+                    let forDisplay = calculatorObject.receiveMessage(clickedElement); //get the return string from Calculator
                     this.blackScreen.innerText = forDisplay;// send it to the black screen
                 })
             }
-        }
-    }
-
-    class App {
-        constructor() {
-            this.htmlManager = new HtmlManager();
-            this.calculator = new Calculator();
-        }
-        start() {
-            this.htmlManager.initialSetUp();
         }
     }
 
@@ -80,25 +71,25 @@ document.addEventListener("DOMContentLoaded", function (eventInfo) {
                         break;
                     case "DEL": //NEED HELP HERE
                         arrayNumbers.pop();//remove the first element
-                        this.displayed = Number(arrayNumbers.join(""));
+                        this.displayed = Number(this.arrayNumbers.join(""));
                         break;
                     case "=":
-                        this.secondNumber = Number(arrayNumbers.join(""));
+                        this.secondNumber = Number(this.arrayNumbers.join(""));
                         this.displayed = this.secondNumber;
                         this.arrayNumbers = [];
-                        if (operator === "+") {
+                        if (this.operator === "+") {
                             this.result = this.firstNumber + this.secondNumber;
                             this.operator = "";;
-                            this.displayed = (`${firstNumber} + ${secondNumber} = ${result}`);
-                        } else if (operator === "-") {
+                            this.displayed = (`${this.firstNumber} + ${this.secondNumber} = ${this.result}`);
+                        } else if (this.operator === "-") {
                             this.result = this.firstNumber - this.secondNumber;
                             this.operator = "";
-                            this.displayed = (`${firstNumber} - ${secondNumber} = ${result}`);
-                        } else if (operator === "*") {
+                            this.displayed = (`${this.firstNumber} - ${this.secondNumber} = ${this.result}`);
+                        } else if (this.operator === "*") {
                             this.result = this.firstNumber * this.secondNumber;
                             this.operator = "";
                             this.displayed = (`${this.firstNumber} * ${this.secondNumber} = ${this.result}`);
-                        } else if (operator === "/") {
+                        } else if (this.operator === "/") {
                             this.result = this.firstNumber / this.secondNumber;
                             this.operator = "";
                             this.displayed = (`${this.firstNumber} / ${this.secondNumber} = ${this.result}`);
@@ -112,12 +103,55 @@ document.addEventListener("DOMContentLoaded", function (eventInfo) {
             }
             return this.displayed;
         }
+
+
     }
+
+    class App {
+        constructor() {
+            this.htmlManager = new HtmlManager();
+            this.calculator = new Calculator();
+        }
+        start() {
+            this.htmlManager.initialSetUp(this.calculator);
+        }
+    }
+
+    let app = new App();
+    app.start();
+
+
+
+
+    function myUnitTest() {
+
+        let calculatorObject = new Calculator();
+        let result = calculatorObject.receiveMessage("1");
+        if (result != "1") {
+            throw new Error("Error");  //when you raise an error
+        }
+        result = calculatorObject.receiveMessage("+");
+        if (result != "+") {
+            throw new Error("Error");  //when you raise an error
+        }
+        result = calculatorObject.receiveMessage("2");
+        if (result != "2") {
+            throw new Error("Error");  //when you raise an error
+        }
+        result = calculatorObject.receiveMessage("=");
+        if (result != "1+2=3") {
+            throw new Error("Error");  //when you raise an error
+        }
+
+
+    }
+
+    // myUnitTest();
+
+
+
+
 });
-
-
-
-
 
 
 
